@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+if [[ "$1" == "" || "$1" == "help" ]]; then
+	echo -e "Usage: deploy <command>\nCommands:\n\t- frontend\n\t- backend\n\t- all"
+	exit 0;
+fi
+
+if [[ "$1" == "frontend" || "$1" == "all" ]]; then
+	echo "==== PULLING FROM GIT ===="
+	cd /var/www/jadens-arc.github.io
+	git pull
+	echo "==== CLEARING EXISTING FILES ===="
+	rm -rf public/*
+	echo "==== REBUILDING HTML ===="
+	hugo
+fi
+
+if [[ "$1" == "backend" || "$1" == "all" ]]; then
+	echo "===== PULLING FROM GIT ====="
+	cd /var/www/api.jadenarceneaux.com/
+	git pull
+	echo "===== KILLING OLD PROCESS ====="
+	killall screen
+	echo "===== INSTALLING ANY NEW NODE PACKAGES ====="
+	npm i
+	echo "===== STARTING NEW PROCESS ====="
+	screen -dmS api node /var/www/api.jadenarceneaux.com/
+fi
