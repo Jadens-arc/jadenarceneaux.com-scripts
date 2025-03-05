@@ -3,7 +3,7 @@ Simple scripts for me to do some small tasks on my website. Pay no mind
 
 ## Usage
 1. Clone repository
-2. add `export PATH="/[absolute path to repository]:$PATH"` to .bashrc
+2. Run the `install.sh` 
 
 ## Commands
 ### `deploy <option>`
