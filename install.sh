@@ -1,8 +1,8 @@
-index=1
+i=1
 for path in $(echo $PATH | tr ":" "\n"); 
 do
-	echo $index. $path;
-	let "index++";
+	echo $i. $path;
+	i=$((i+1));
 done;
 
 path_index=0
