@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 cp -r /var/log/nginx/access* /tmp
 gzip -d /tmp/*.gz
-cat /tmp/access* | grep link-in-bio | less
+cat /tmp/access* | awk '/link-in-bio/ {print $1"\t"$4$5}' | less
 rm /tmp/access.log*
 
